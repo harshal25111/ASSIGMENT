@@ -1,0 +1,115 @@
+ MySQL  SQL > \connect root@127.0.0.1
+Creating a session to 'root@127.0.0.1'
+Please provide the password for 'root@127.0.0.1': ****
+Save password for 'root@127.0.0.1'? [Y]es/[N]o/Ne[v]er (default No): y
+Fetching schema names for autocompletion... Press ^C to stop.
+Your MySQL connection id is 48 (X protocol)
+Server version: 8.0.21 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  127.0.0.1:33060+ ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| dbmsa              |
+| performance_schema |
+|queries             |
+| seriesdb           |
+| sds                |
+| world              |
++--------------------+
+8 rows in set (0.0005 sec)
+ MySQL  127.0.0.1:33060+ ssl  SQL > use seriesdb;
+Default schema set to `seriesdb`.
+Fetching table and column names from `seriesdb` for auto-completion... Press ^C to stop.
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > create table series (sname VARCHAR(25), genre VARCHAR(30), director character (30), county VARCHAR(30),status VARCHAR(30),YOR DATE, YOE DATE);
+Query OK, 0 rows affected (0.0540 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > show tables;
++--------------------+
+| Tables_in_seriesdb |
++--------------------+
+| series             |
++--------------------+
+1 row in set (0.0050 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > describe series;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sname    | varchar(25) | YES  |     | NULL    |       |
+| genre    | varchar(30) | YES  |     | NULL    |       |
+| director | char(30)    | YES  |     | NULL    |       |
+| county   | varchar(30) | YES  |     | NULL    |       |
+| status   | varchar(30) | YES  |     | NULL    |       |
+| YOR      | date        | YES  |     | NULL    |       |
+| YOE      | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.0055 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > insert into series (sname,genre,director,county,status,YOR,YOE) values ('Kota Factory','comedy-drama','Raghav subu','india','finished',2009-04-26,2009-04-26);
+
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sname    | varchar(25) | YES  |     | NULL    |       |
+| genre    | varchar(30) | YES  |     | NULL    |       |
+| director | char(30)    | YES  |     | NULL    |       |
+| county   | varchar(30) | YES  |     | NULL    |       |
+| status   | varchar(30) | YES  |     | NULL    |       |
+| YOR      | date        | YES  |     | NULL    |       |
+| YOE      | date        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.0075 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > select sname from series;
++--------------+
+| sname        |
++--------------+
+| Kota Factory |
++--------------+
+1 row in set (0.0050 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > select *from series;
++--------------+--------------+-------------+--------+----------+------------+------------+
+| sname        | genre        | director    | county | status   | YOR        | YOE        |
++--------------+--------------+-------------+--------+----------+------------+------------+
+| Kota factory | comedy-drama | Raghav Subu | india  | finished | 0000-00-00 | 0000-00-00 |
++--------------+--------------+-------------+--------+----------+------------+------------+
+1 row in set (0.0009 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > insert into series (sname,genre,director,county,status,YOR,YOE) values ('The Danger','thriller','Vikram Bhatt','UAE','ended','2019-07-26','2019-07-26');
+Query OK, 1 row affected (0.0058 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > insert into series (sname,genre,director,county,status,YOR,YOE) values ('All my children','Drama','agnes nixon','US','ended','2013-05-16','2018-04-16');
+Query OK, 1 row affected (0.0081 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > insert into series (sname,genre,director,county,status,YOR,YOE) values ('The blow','Drama','aletia nor','US','ended','2004-06-02','2005-11-21');
+Query OK, 1 row affected (0.0063 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > insert into series (sname,genre,director,county,status,YOR,YOE) values ('Asheens','Drama','stuart clw ','spain','ended','2002-05-28','2003-08-29');
+Query OK, 1 row affected (0.0064 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > insert into series (sname,genre,director,county,status,YOR,YOE) values ('After world','thrillr','Aytac cicek','France','ended','2011-07-14','2011-09-05');
+Query OK, 1 row affected (0.0056 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > select *from series;
++-----------------+--------------+----------------+--------+----------+------------+------------+
+| sname           | genre        | director       | county | status   | YOR        | YOE        |
++-----------------+--------------+----------------+--------+----------+------------+------------+
+| Kota Factory    | comedy-drama | Raghav subu    | india  | finished | 2009-04-26 | 2009-04-26 |
+| The Danger      | thriller     | Vikram Bhatt   | UAE    | ended    | 2019-07-26 | 2019-07-26 |
+| All my children | Drama        |  agnes nixon   | US     | ended    | 2013-05-16 | 2018-04-16 |
+| The blow        | Drama        | aletia nor     | US     | ended    | 2004-06-02 | 2005-11-21 |
+| Asheens         | Drama        | stuart clw     | spain  | ended    | 2002-05-28 | 2003-08-29 |
+| After world     |thrillr       | Aytac cicek    | France | ended    | 2011-07-14 | 2011-09-05 |
++-----------------+--------------+----------------+--------+----------+------------+------------+
+6 rows in set (0.0008 sec)
+
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > SELECT * FROM series  WHERE YOR BETWEEN '2010-1-1' AND '2020-1-1';
++-----------------+----------+---------------+--------+--------+------------+------------+
+| sname           | genre    | director      | county | status | YOR        | YOE        |
++-----------------+----------+---------------+--------+--------+------------+------------+
+| The Danger      | thriller | Vikram Bhatt  | UAE    | ended  | 2019-07-26 | 2019-07-26 |
+|All my children  | Drama    | agnes nixon   | US     | ended  | 2013-05-16 | 2018-04-16 |
+| After world     | thrillr  | Aytac cicek   |France  | ended  | 2011-07-14 | 2011-09-05 |
++-----------------+----------+---------------+--------+--------+------------+------------+
+3 rows in set (0.0042 sec)
+ MySQL  127.0.0.1:33060+ ssl  seriesdb  SQL > SELECT * FROM series
+                                           -> WHERE YOE BETWEEN '2004-01-01' AND '2005-1-1';
++----------+-------+-------------+--------+--------+------------+------------+
+| sname    | genre | director    | county | status | YOR        | YOE        |
++----------+-------+-------------+--------+--------+------------+------------+
+| The blow  | Drama | aletia nor | US     | ended  | 2004-06-02 | 2005-11-21 |
++----------+-------+-------------+--------+--------+------------+------------+
+1 row in set (0.0008 sec)
